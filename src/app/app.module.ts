@@ -3,20 +3,24 @@ import { NgModule } from "@angular/core";
 
 import { AppComponent } from "./rootApp/app.component";
 import { AppRoutingModule } from "./rootApp/router/router.module";
-import { ContactListComponent } from "./views/home/contact-list/contact-list.component";
-import { ContactItemComponent } from "./views/home/contact-item/contact-item.component";
+import { ContactListComponent } from "./views/contact/contact-list/contact-list.component";
+import { ContactItemComponent } from "./views/contact/contact-item/contact-item.component";
 import { ErrorComponent } from "./views/error-page/error.component";
-import { HomeComponent } from "./views/home/home.component";
-import { SearchBarComponent } from "./views/home/search-bar/search-bar.component";
+import { ContactComponent } from "./views/contact/contact.component";
+import { SearchBarComponent } from "./views/contact/search-bar/search-bar.component";
 import { TestComponent } from "./views/test/test.component";
+import { ContactEditComponent } from "./views/contact-edit/contact-edit.component";
+import { ContactAddComponent } from "./views/contact-add/contact-add.component";
 
 @NgModule({
   declarations: [
     AppComponent,
     ContactListComponent,
     ContactItemComponent,
+    ContactEditComponent,
+    ContactAddComponent,
     ErrorComponent,
-    HomeComponent,
+    ContactComponent,
     SearchBarComponent,
     TestComponent
   ],
