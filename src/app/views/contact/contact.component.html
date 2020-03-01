@@ -1,4 +1,15 @@
 <div class="home-section">
   <app-search></app-search>
-  <app-contact-list></app-contact-list>
+
+  <div>
+    <app-contact-item
+      (deleteClickEvent)="handleDeleteEvent($event)"
+    ></app-contact-item>
+    <app-contact-item
+      (deleteClickEvent)="handleDeleteEvent($event)"
+    ></app-contact-item>
+    <app-contact-item
+      (deleteClickEvent)="handleDeleteEvent($event)"
+    ></app-contact-item>
+  </div>
 </div>

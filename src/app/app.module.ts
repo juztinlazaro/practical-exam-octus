@@ -1,9 +1,9 @@
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
+import { NgbModule, NgbActiveModal } from "@ng-bootstrap/ng-bootstrap";
 
 import { AppComponent } from "./rootApp/app.component";
 import { AppRoutingModule } from "./rootApp/router/router.module";
-import { ContactListComponent } from "./views/contact/contact-list/contact-list.component";
 import { ContactItemComponent } from "./views/contact/contact-item/contact-item.component";
 import { ErrorComponent } from "./views/error-page/error.component";
 import { ContactComponent } from "./views/contact/contact.component";
@@ -20,7 +20,6 @@ import { PageTitleService } from "./common/service/pageTitle.service";
 @NgModule({
   declarations: [
     AppComponent,
-    ContactListComponent,
     ContactItemComponent,
     ContactEditComponent,
     ContactAddComponent,
@@ -32,8 +31,9 @@ import { PageTitleService } from "./common/service/pageTitle.service";
     SearchBarComponent,
     TestComponent
   ],
-  imports: [BrowserModule, AppRoutingModule],
-  providers: [PageTitleService],
+  imports: [BrowserModule, AppRoutingModule, NgbModule],
+  entryComponents: [ModalComponent],
+  providers: [PageTitleService, NgbActiveModal],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

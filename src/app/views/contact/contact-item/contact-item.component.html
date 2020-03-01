@@ -13,8 +13,7 @@
           <button
             type="button"
             class="btn btn-danger mr-2"
-            data-toggle="modal"
-            data-target="#exampleModal"
+            (click)="handleDeleteEvent()"
           >
             <i class="fa fa-trash" aria-hidden="true"></i>
             Delete
@@ -36,8 +35,6 @@
           <div>Email: test@gmail.com</div>
         </div>
       </div>
-
-      <app-contact-delete></app-contact-delete>
     </div>
   </div>
 </div>
