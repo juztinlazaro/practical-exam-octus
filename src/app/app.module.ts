@@ -19,6 +19,9 @@ import { ModalComponent } from "./components/modal/modal.component";
 import { PageTitleService } from "./common/service/pageTitle.service";
 import { rootReducer } from "./store/rootReducer";
 import { FormsModule } from "@angular/forms";
+import { EffectsModule } from "@ngrx/effects";
+import { ContactEffects } from "./store/contact/contact.effects";
+import { ContactService } from "./common/service/contact.service";
 
 @NgModule({
   declarations: [
@@ -39,10 +42,11 @@ import { FormsModule } from "@angular/forms";
     AppRoutingModule,
     FormsModule,
     NgbModule,
-    StoreModule.forRoot(rootReducer)
+    StoreModule.forRoot(rootReducer),
+    EffectsModule.forRoot([ContactEffects])
   ],
   entryComponents: [ModalComponent],
-  providers: [PageTitleService, NgbActiveModal],
+  providers: [PageTitleService, NgbActiveModal, ContactService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
