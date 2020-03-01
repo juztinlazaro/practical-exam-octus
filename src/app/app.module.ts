@@ -18,6 +18,7 @@ import { ModalComponent } from "./components/modal/modal.component";
 
 import { PageTitleService } from "./common/service/pageTitle.service";
 import { rootReducer } from "./store/rootReducer";
+import { FormsModule } from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { rootReducer } from "./store/rootReducer";
   imports: [
     BrowserModule,
     AppRoutingModule,
+    FormsModule,
     NgbModule,
     StoreModule.forRoot(rootReducer)
   ],
