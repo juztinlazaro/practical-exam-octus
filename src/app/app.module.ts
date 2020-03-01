@@ -11,6 +11,7 @@ import { SearchBarComponent } from "./views/contact/search-bar/search-bar.compon
 import { TestComponent } from "./views/test/test.component";
 import { ContactEditComponent } from "./views/contact-edit/contact-edit.component";
 import { ContactAddComponent } from "./views/contact-add/contact-add.component";
+import { HeaderComponent } from "./components/header/header.component";
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { ContactAddComponent } from "./views/contact-add/contact-add.component";
     ContactEditComponent,
     ContactAddComponent,
     ErrorComponent,
+    HeaderComponent,
     ContactComponent,
     SearchBarComponent,
     TestComponent

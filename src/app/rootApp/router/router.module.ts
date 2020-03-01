@@ -8,11 +8,20 @@ import { ContactAddComponent } from "src/app/views/contact-add/contact-add.compo
 
 const appRoutes: Routes = [
   {
-    path: "contact",
-    component: ContactComponent
+    path: "",
+    component: ContactComponent,
+    data: { title: "Contact List" }
   },
-  { path: "edit", component: ContactEditComponent },
-  { path: "add", component: ContactAddComponent },
+  {
+    path: "edit",
+    component: ContactEditComponent,
+    data: { title: "Edit Contact" }
+  },
+  {
+    path: "add",
+    component: ContactAddComponent,
+    data: { title: "Add Contact" }
+  },
   {
     path: "test",
     component: TestComponent
