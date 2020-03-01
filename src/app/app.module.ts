@@ -1,6 +1,7 @@
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
 import { NgbModule, NgbActiveModal } from "@ng-bootstrap/ng-bootstrap";
+import { StoreModule } from "@ngrx/store";
 
 import { AppComponent } from "./rootApp/app.component";
 import { AppRoutingModule } from "./rootApp/router/router.module";
@@ -16,6 +17,7 @@ import { HeaderComponent } from "./components/header/header.component";
 import { ModalComponent } from "./components/modal/modal.component";
 
 import { PageTitleService } from "./common/service/pageTitle.service";
+import { rootReducer } from "./store/rootReducer";
 
 @NgModule({
   declarations: [
@@ -31,7 +33,12 @@ import { PageTitleService } from "./common/service/pageTitle.service";
     SearchBarComponent,
     TestComponent
   ],
-  imports: [BrowserModule, AppRoutingModule, NgbModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    NgbModule,
+    StoreModule.forRoot(rootReducer)
+  ],
   entryComponents: [ModalComponent],
   providers: [PageTitleService, NgbActiveModal],
   bootstrap: [AppComponent]

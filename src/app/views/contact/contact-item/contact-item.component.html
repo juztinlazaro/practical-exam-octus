@@ -4,7 +4,7 @@
       <div class="row _spacer">
         <div class="col-md-9">
           <img
-            src="https://lh3.googleusercontent.com/proxy/B86oAEP_bE-j_NVGUcgIzs6Db6K52p93BGuH_gL9LpCu7uRghEO6GykK6EGYDTlj-GtESWGq45sUwsakTB1Qa5kpeBcs17tEPGFu"
+            [src]="contact.image"
             class="rounded-circle mr-5 _circle-small"
           />
         </div>
@@ -28,11 +28,11 @@
 
       <div class="row ">
         <div class="col-md-6">
-          <div>Name: John Doe</div>
+          <div>Name: {{ contact.name }}</div>
 
-          <div>Phone: 043223321</div>
+          <div>Phone: {{ contact.phone }}</div>
 
-          <div>Email: test@gmail.com</div>
+          <div>Email: {{ contact.email }}</div>
         </div>
       </div>
     </div>

@@ -1,44 +1,32 @@
-import { Component } from "@angular/core";
-import { Contacts } from "src/app/common/model/contacts.model";
+import { Component, OnInit } from "@angular/core";
+import { Store } from "@ngrx/store";
 import {
   NgbModal,
   ModalDismissReasons,
   NgbModalOptions
 } from "@ng-bootstrap/ng-bootstrap";
 import { ModalComponent } from "src/app/components/modal/modal.component";
+import { RootStore } from "src/app/store/rootStore.interface";
+import { Contacts } from "src/app/common/model/contacts.model";
+import { Observable } from "rxjs";
 @Component({
   selector: "app-home",
   templateUrl: "./contact.component.html"
 })
-export class ContactComponent {
+export class ContactComponent implements OnInit {
   modalOptions: NgbModalOptions;
   closeResult: string;
-  contacts: Contacts[] = [
-    new Contacts(
-      "juztinlazaro@gmail.com",
-      "Justin Lazaro",
-      12314,
-      "https://lh3.googleusercontent.com/proxy/B86oAEP_bE-j_NVGUcgIzs6Db6K52p93BGuH_gL9LpCu7uRghEO6GykK6EGYDTlj-GtESWGq45sUwsakTB1Qa5kpeBcs17tEPGFu"
-    ),
-    new Contacts(
-      "juztinlazaro1@gmail.com",
-      "Justin Lazaro",
-      12314,
-      "https://lh3.googleusercontent.com/proxy/B86oAEP_bE-j_NVGUcgIzs6Db6K52p93BGuH_gL9LpCu7uRghEO6GykK6EGYDTlj-GtESWGq45sUwsakTB1Qa5kpeBcs17tEPGFu"
-    ),
-    new Contacts(
-      "juztinlazaro2@gmail.com",
-      "Justin Lazaro",
-      12314,
-      "https://lh3.googleusercontent.com/proxy/B86oAEP_bE-j_NVGUcgIzs6Db6K52p93BGuH_gL9LpCu7uRghEO6GykK6EGYDTlj-GtESWGq45sUwsakTB1Qa5kpeBcs17tEPGFu"
-    )
-  ];
+  contacts: Observable<Contacts[]>;
 
-  constructor(private modalService: NgbModal) {
+  constructor(private modalService: NgbModal, private store: Store<RootStore>) {
     this.modalOptions = {
       backdrop: "static",
       backdropClass: "customBackdrop"
     };
+  }
+
+  ngOnInit() {
+    this.contacts = this.store.select("contacts");
   }
 
   handleDeleteEvent(event) {

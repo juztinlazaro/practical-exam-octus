@@ -3,12 +3,8 @@
 
   <div>
     <app-contact-item
-      (deleteClickEvent)="handleDeleteEvent($event)"
-    ></app-contact-item>
-    <app-contact-item
-      (deleteClickEvent)="handleDeleteEvent($event)"
-    ></app-contact-item>
-    <app-contact-item
+      *ngFor="let contact of (contacts | async).contacts"
+      [contact]="contact"
       (deleteClickEvent)="handleDeleteEvent($event)"
     ></app-contact-item>
   </div>
