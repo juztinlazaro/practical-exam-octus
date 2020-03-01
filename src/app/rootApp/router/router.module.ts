@@ -6,7 +6,7 @@ import { ErrorComponent } from "src/app/views/error-page/error.component";
 import { ContactEditComponent } from "src/app/views/contact-edit/contact-edit.component";
 import { ContactAddComponent } from "src/app/views/contact-add/contact-add.component";
 
-const appRoutes: Routes = [
+export const appRoutes: Routes = [
   {
     path: "",
     component: ContactComponent,

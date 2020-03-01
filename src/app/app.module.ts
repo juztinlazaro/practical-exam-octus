@@ -12,6 +12,8 @@ import { TestComponent } from "./views/test/test.component";
 import { ContactEditComponent } from "./views/contact-edit/contact-edit.component";
 import { ContactAddComponent } from "./views/contact-add/contact-add.component";
 import { HeaderComponent } from "./components/header/header.component";
+import { ContactDeleteComponent } from "./views/contact/contact-delete/contact-delete.component";
+import { PageTitleService } from "./common/service/pageTitle.service";
 
 @NgModule({
   declarations: [
@@ -20,6 +22,7 @@ import { HeaderComponent } from "./components/header/header.component";
     ContactItemComponent,
     ContactEditComponent,
     ContactAddComponent,
+    ContactDeleteComponent,
     ErrorComponent,
     HeaderComponent,
     ContactComponent,
@@ -27,7 +30,7 @@ import { HeaderComponent } from "./components/header/header.component";
     TestComponent
   ],
   imports: [BrowserModule, AppRoutingModule],
-  providers: [],
+  providers: [PageTitleService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
