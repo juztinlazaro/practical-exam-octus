@@ -143,4 +143,14 @@ export class ContactEffects {
       );
     })
   );
+
+  @Effect({ dispatch: false })
+  UpdateContactSuccess: Observable<Action> = this.actions.pipe(
+    ofType(TYPES.UPDATE_CONTACT_SUCCESS),
+    tap(response => {
+      if (response) {
+        this.router.navigateByUrl("");
+      }
+    })
+  );
 }
