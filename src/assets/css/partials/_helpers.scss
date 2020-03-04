@@ -13,3 +13,12 @@
 ._circle-small {
   width: 50px;
 }
+
+input.ng-invalid.ng-touched {
+  border: 1px solid #af3d3d;
+}
+
+.error-message {
+  margin: 10px;
+  color: #af3d3d;
+}

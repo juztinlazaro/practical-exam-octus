@@ -18,7 +18,7 @@ import { ModalComponent } from "./components/modal/modal.component";
 
 import { PageTitleService } from "./common/service/pageTitle.service";
 import { rootReducer } from "./store/rootReducer";
-import { FormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { EffectsModule } from "@ngrx/effects";
 import { ContactEffects } from "./store/contact/contact.effects";
 import { ContactService } from "./common/service/contact.service";
@@ -43,6 +43,7 @@ import { SpinnerComponent } from "./components/spinner/spinner.component";
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
     NgbModule,
     StoreModule.forRoot(rootReducer),
     EffectsModule.forRoot([ContactEffects])

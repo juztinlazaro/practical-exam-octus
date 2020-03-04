@@ -4,6 +4,7 @@ import { Contacts } from "src/app/common/model/contacts.model";
 import { Store } from "@ngrx/store";
 import { RootStore } from "src/app/store/rootStore.interface";
 import { Subscription } from "rxjs";
+import { FormGroup, FormControl, Validators } from "@angular/forms";
 
 @Component({
   selector: "app-contact-add",
@@ -15,6 +16,7 @@ export class ContactAddComponent implements OnInit, OnDestroy {
   phone: number = null;
   isLoading = false;
   storeSubscription: Subscription;
+  contactForm: FormGroup;
 
   constructor(private store: Store<RootStore>) {}
 
@@ -22,17 +24,27 @@ export class ContactAddComponent implements OnInit, OnDestroy {
     this.storeSubscription = this.store.select("contacts").subscribe(state => {
       this.isLoading = state.isLoading;
     });
+
+    this.contactForm = new FormGroup({
+      name: new FormControl(null, Validators.required),
+      email: new FormControl(null, [Validators.required, Validators.email]),
+      phone: new FormControl(null, [
+        Validators.required,
+        Validators.pattern(/^[1-9]+[0-9]*$/)
+      ])
+    });
   }
 
   ngOnDestroy() {
     this.storeSubscription.unsubscribe();
   }
 
-  onAddContact() {
+  onSubmit() {
+    const { name, email, phone } = this.contactForm.value;
     const payload: Contacts = {
-      name: this.name,
-      email: this.email,
-      phone: this.phone,
+      name,
+      email,
+      phone,
       image: "http://www.binarysolutions.jo/Image/avatar_male.png"
     };
 
