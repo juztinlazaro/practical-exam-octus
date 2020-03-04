@@ -5,7 +5,10 @@ export class ContactService {
   constructor() {}
 
   addContact(payload) {
-    console.log(payload);
+    return of(payload).pipe(delay(1000));
+  }
+
+  deleteContact(payload: { email: string }) {
     return of(payload).pipe(delay(1000));
   }
 }

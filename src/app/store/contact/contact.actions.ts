@@ -17,4 +17,25 @@ export class AddContactError implements Action {
   constructor(public payload: Error) {}
 }
 
-export type ContactActions = AddContact | AddContactSuccess | AddContactError;
+export class DeleteContact implements Action {
+  readonly type = TYPES.DELETE_CONTACT;
+  constructor(public payload: { email: string }) {}
+}
+
+export class DeleteContactSuccess implements Action {
+  readonly type = TYPES.DELETE_CONTACT_SUCCESS;
+  constructor(public payload: Contacts) {}
+}
+
+export class DeleteContactError implements Action {
+  readonly type = TYPES.DELETE_CONTACT_ERROR;
+  constructor(public payload: Error) {}
+}
+
+export type ContactActions =
+  | AddContact
+  | AddContactSuccess
+  | AddContactError
+  | DeleteContact
+  | DeleteContactSuccess
+  | DeleteContactError;

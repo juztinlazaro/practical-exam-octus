@@ -9,6 +9,7 @@ import { ModalComponent } from "src/app/components/modal/modal.component";
 import { RootStore } from "src/app/store/rootStore.interface";
 import { Contacts } from "src/app/common/model/contacts.model";
 import { Observable } from "rxjs";
+import { DeleteContact } from "src/app/store/contact/contact.actions";
 @Component({
   selector: "app-home",
   templateUrl: "./contact.component.html"
@@ -29,13 +30,14 @@ export class ContactComponent implements OnInit {
     this.contacts = this.store.select("contacts");
   }
 
-  handleDeleteEvent(event) {
+  handleDeleteEvent(contact: Contacts) {
     const modalRef = this.modalService.open(ModalComponent, this.modalOptions);
     modalRef.componentInstance.title = "Confirmation";
-    modalRef.componentInstance.content = "Are you sure you want to delete?";
+    modalRef.componentInstance.content = `Are you sure you want to delete ${contact.email}?`;
+
     modalRef.componentInstance.okCallBack.subscribe(() => {
-      console.log("yayooo");
-      // modalRef.componentInstance.close();
+      this.store.dispatch(new DeleteContact({ email: contact.email }));
+      modalRef.componentInstance.close();
     });
   }
 }

@@ -8,7 +8,10 @@ import * as TYPES from "./contact.types";
 import {
   AddContactError,
   AddContactSuccess,
-  AddContact
+  AddContact,
+  DeleteContactSuccess,
+  DeleteContactError,
+  DeleteContact
 } from "./contact.actions";
 import { Contacts } from "src/app/common/model/contacts.model";
 import { ContactService } from "src/app/common/service/contact.service";
@@ -47,5 +50,17 @@ export class ContactEffects {
   AddContactError: Observable<Action> = this.actions.pipe(
     ofType(TYPES.ADD_CONTACT_ERROR),
     tap(error => console.log(error))
+  );
+
+  @Effect()
+  DeleteContact: Observable<Action> = this.actions.pipe(
+    ofType(TYPES.DELETE_CONTACT),
+    map((action: DeleteContact) => action.payload),
+    exhaustMap((payload: { email: string }) => {
+      return this.contactService.deleteContact(payload).pipe(
+        map((response: any) => new DeleteContactSuccess(response)),
+        catchError(error => of(new DeleteContactError(error)))
+      );
+    })
   );
 }
