@@ -41,7 +41,7 @@ export class ContactComponent implements OnInit {
   handleDeleteEvent(contact: Contacts) {
     const modalRef = this.modalService.open(ModalComponent, this.modalOptions);
     modalRef.componentInstance.title = "Confirmation";
-    modalRef.componentInstance.content = `Are you sure you want to delete ${contact.email}?`;
+    modalRef.componentInstance.content = `Are you sure you want to delete the contact: ${contact.email}?`;
 
     modalRef.componentInstance.okCallBack.subscribe(() => {
       this.store.dispatch(new DeleteContact({ id: contact.id }));
