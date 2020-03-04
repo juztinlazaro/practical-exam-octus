@@ -61,7 +61,7 @@ export function contactReducer(
     }
 
     case TYPES.GET_CONTACT: {
-      const findContact = state.contacts.filter(contact => {
+      const findContact = state.contacts.find(contact => {
         return contact.email === action.payload.email;
       });
 

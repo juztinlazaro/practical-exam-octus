@@ -11,9 +11,6 @@ import { FormGroup, FormControl, Validators } from "@angular/forms";
   templateUrl: "./contact-add.component.html"
 })
 export class ContactAddComponent implements OnInit, OnDestroy {
-  name: string = "";
-  email: string = "";
-  phone: number = null;
   isLoading = false;
   storeSubscription: Subscription;
   contactForm: FormGroup;
