@@ -5,7 +5,10 @@ import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { Contacts } from "src/app/common/model/contacts.model";
 import { Subscription } from "rxjs";
 import { ActivatedRoute } from "@angular/router";
-import { GetContact } from "src/app/store/contact/contact.actions";
+import {
+  GetContact,
+  UpdateContact
+} from "src/app/store/contact/contact.actions";
 
 @Component({
   selector: "app-contact-edit",
@@ -13,7 +16,6 @@ import { GetContact } from "src/app/store/contact/contact.actions";
 })
 export class ContactEditComponent implements OnInit, OnDestroy {
   storeSubscription: Subscription;
-  routeSubscription: Subscription;
 
   contact = null;
   isLoading = false;
@@ -47,7 +49,6 @@ export class ContactEditComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.storeSubscription.unsubscribe();
-    this.routeSubscription.unsubscribe();
   }
 
   onSubmit() {
@@ -59,6 +60,6 @@ export class ContactEditComponent implements OnInit, OnDestroy {
       image: "http://www.binarysolutions.jo/Image/avatar_male.png"
     };
 
-    // this.store.dispatch(new AddContact(payload));
+    this.store.dispatch(new UpdateContact(payload));
   }
 }

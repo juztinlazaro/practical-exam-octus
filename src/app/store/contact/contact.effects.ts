@@ -14,7 +14,10 @@ import {
   DeleteContact,
   GetContact,
   GetContactSuccess,
-  GetContactError
+  GetContactError,
+  UpdateContact,
+  UpdateContactError,
+  UpdateContactSuccess
 } from "./contact.actions";
 import { Contacts } from "src/app/common/model/contacts.model";
 import { ContactService } from "src/app/common/service/contact.service";
@@ -75,6 +78,18 @@ export class ContactEffects {
       return this.contactService.getContact(payload).pipe(
         map((response: any) => new GetContactSuccess(response)),
         catchError(error => of(new GetContactError(error)))
+      );
+    })
+  );
+
+  @Effect()
+  UpdateContact: Observable<Action> = this.actions.pipe(
+    ofType(TYPES.UPDATE_CONTACT),
+    map((action: UpdateContact) => action.payload),
+    exhaustMap((payload: { email: string }) => {
+      return this.contactService.updateContact(payload).pipe(
+        map((response: any) => new UpdateContactSuccess(response)),
+        catchError(error => of(new UpdateContactError(error)))
       );
     })
   );

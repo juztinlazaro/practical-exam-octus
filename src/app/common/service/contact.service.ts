@@ -12,7 +12,7 @@ export class ContactService {
     return of(payload).pipe(delay(1000));
   }
 
-  uploadContact(payload) {
+  updateContact(payload) {
     return of(payload).pipe(delay(1000));
   }
 

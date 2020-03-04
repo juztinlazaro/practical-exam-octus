@@ -12,10 +12,15 @@ export class HeaderComponent {
   constructor(private router: Router) {
     this.router.events.subscribe((event: any) => {
       if (event instanceof NavigationEnd) {
-        console.log(event.url);
         const route = appRoutes.find(page => {
           const path = `/${page.path}`;
-          return path === event.url;
+          if (path === event.url) {
+            return true;
+          }
+
+          if (event.url.includes("/edit")) {
+            return true;
+          }
         });
 
         this.pageTitle = route.data.title;

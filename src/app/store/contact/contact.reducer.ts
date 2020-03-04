@@ -86,6 +86,36 @@ export function contactReducer(
         error: action.payload
       };
     }
+
+    case TYPES.UPDATE_CONTACT: {
+      const updateContact = state.contacts.map(contact => {
+        if (contact.email === action.payload.email) {
+          return action.payload;
+        }
+
+        return contact;
+      });
+      return {
+        ...state,
+        isLoading: true,
+        contacts: updateContact
+      };
+    }
+
+    case TYPES.UPDATE_CONTACT_SUCCESS: {
+      return {
+        ...state,
+        isLoading: false
+      };
+    }
+
+    case TYPES.UPDATE_CONTACT_ERROR: {
+      return {
+        ...state,
+        isLoading: false,
+        error: action.payload
+      };
+    }
     default:
       return state;
   }

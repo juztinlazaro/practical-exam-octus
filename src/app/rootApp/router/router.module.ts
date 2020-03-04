@@ -24,7 +24,8 @@ export const appRoutes: Routes = [
   },
   {
     path: "test",
-    component: TestComponent
+    component: TestComponent,
+    data: { message: "Test" }
   },
   {
     path: "not-found",

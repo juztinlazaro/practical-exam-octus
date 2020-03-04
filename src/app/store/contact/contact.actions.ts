@@ -47,6 +47,21 @@ export class GetContactError implements Action {
   constructor(public payload) {}
 }
 
+export class UpdateContact implements Action {
+  readonly type = TYPES.UPDATE_CONTACT;
+  constructor(public payload: { email: string }) {}
+}
+
+export class UpdateContactSuccess implements Action {
+  readonly type = TYPES.UPDATE_CONTACT_SUCCESS;
+  constructor(public payload) {}
+}
+
+export class UpdateContactError implements Action {
+  readonly type = TYPES.UPDATE_CONTACT_ERROR;
+  constructor(public payload) {}
+}
+
 export type ContactActions =
   | AddContact
   | AddContactSuccess
@@ -56,4 +71,7 @@ export type ContactActions =
   | DeleteContactError
   | GetContact
   | GetContactError
-  | GetContactSuccess;
+  | GetContactSuccess
+  | UpdateContact
+  | UpdateContactSuccess
+  | UpdateContactError;
