@@ -29,17 +29,17 @@ export class ContactAddComponent implements OnInit, OnDestroy {
     this.contactForm = new FormGroup({
       name: new FormControl(null, [
         Validators.required,
-        this.forbiddenName.bind(this)
+        this.duplicatedName.bind(this)
       ]),
       email: new FormControl(null, [
         Validators.required,
         Validators.email,
-        this.forbiddenEmail.bind(this)
+        this.duplicatedEmail.bind(this)
       ]),
       phone: new FormControl(null, [
         Validators.required,
         Validators.pattern(/^[1-9]+[0-9]*$/),
-        this.forbiddenPhone.bind(this)
+        this.duplicatedPhone.bind(this)
       ])
     });
   }
@@ -61,7 +61,7 @@ export class ContactAddComponent implements OnInit, OnDestroy {
     this.store.dispatch(new AddContact(payload));
   }
 
-  forbiddenName(control: FormControl) {
+  duplicatedName(control: FormControl) {
     const validate = this.contacts.find(item => item.name === control.value);
 
     if (validate) {
@@ -71,7 +71,7 @@ export class ContactAddComponent implements OnInit, OnDestroy {
     return null;
   }
 
-  forbiddenEmail(control: FormControl) {
+  duplicatedEmail(control: FormControl) {
     const validate = this.contacts.find(item => item.email === control.value);
 
     if (validate) {
@@ -81,7 +81,7 @@ export class ContactAddComponent implements OnInit, OnDestroy {
     return null;
   }
 
-  forbiddenPhone(control: FormControl) {
+  duplicatedPhone(control: FormControl) {
     const validate = this.contacts.find(item => item.phone === control.value);
 
     if (validate) {
