@@ -62,6 +62,21 @@ export class UpdateContactError implements Action {
   constructor(public payload) {}
 }
 
+export class GetContactList implements Action {
+  readonly type = TYPES.GET_CONTACT_LIST;
+  constructor(public payload: { email: string }) {}
+}
+
+export class GetContactListSuccess implements Action {
+  readonly type = TYPES.GET_CONTACT_LIST_SUCCESS;
+  constructor(public payload) {}
+}
+
+export class GetContactListError implements Action {
+  readonly type = TYPES.GET_CONTACT_LIST_ERROR;
+  constructor(public payload) {}
+}
+
 export type ContactActions =
   | AddContact
   | AddContactSuccess
@@ -72,6 +87,9 @@ export type ContactActions =
   | GetContact
   | GetContactError
   | GetContactSuccess
+  | GetContactList
+  | GetContactListSuccess
+  | GetContactListError
   | UpdateContact
   | UpdateContactSuccess
   | UpdateContactError;

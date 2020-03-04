@@ -6,8 +6,6 @@ export function contactReducer(
   state = initialState,
   action: ACTIONS.ContactActions
 ) {
-  console.log(action);
-  console.log("type", action);
   switch (action.type) {
     case TYPES.ADD_CONTACT: {
       return {
@@ -79,6 +77,29 @@ export function contactReducer(
     }
 
     case TYPES.GET_CONTACT_ERROR: {
+      return {
+        ...state,
+        isLoading: false,
+        error: action.payload
+      };
+    }
+
+    case TYPES.GET_CONTACT_LIST: {
+      return {
+        ...state,
+        isLoading: true,
+        contacts: action.payload
+      };
+    }
+
+    case TYPES.GET_CONTACT_LIST_SUCCESS: {
+      return {
+        ...state,
+        isLoading: false
+      };
+    }
+
+    case TYPES.GET_CONTACT_LIST_ERROR: {
       return {
         ...state,
         isLoading: false,

@@ -17,7 +17,10 @@ import {
   GetContactError,
   UpdateContact,
   UpdateContactError,
-  UpdateContactSuccess
+  UpdateContactSuccess,
+  GetContactListSuccess,
+  GetContactListError,
+  GetContactList
 } from "./contact.actions";
 import { Contacts } from "src/app/common/model/contacts.model";
 import { ContactService } from "src/app/common/service/contact.service";
@@ -35,6 +38,14 @@ export class ContactEffects {
     ofType(TYPES.ADD_CONTACT),
     map((action: AddContact) => action.payload),
     exhaustMap((payload: Contacts) => {
+      const getList = localStorage.getItem("contacts");
+      if (getList) {
+        const array = [...JSON.parse(getList), payload];
+        localStorage.setItem("contacts", JSON.stringify(array));
+      } else {
+        localStorage.setItem("contacts", JSON.stringify([payload]));
+      }
+
       return this.contactService.addContact(payload).pipe(
         map((response: any) => new AddContactSuccess(response)),
         catchError(error => of(new AddContactError(error)))
@@ -78,6 +89,18 @@ export class ContactEffects {
       return this.contactService.getContact(payload).pipe(
         map((response: any) => new GetContactSuccess(response)),
         catchError(error => of(new GetContactError(error)))
+      );
+    })
+  );
+
+  @Effect()
+  GetContactList: Observable<Action> = this.actions.pipe(
+    ofType(TYPES.GET_CONTACT_LIST),
+    map((action: GetContactList) => action.payload),
+    exhaustMap(payload => {
+      return this.contactService.getContactList(payload).pipe(
+        map((response: any) => new GetContactListSuccess(response)),
+        catchError(error => of(new GetContactListError(error)))
       );
     })
   );

@@ -4,8 +4,8 @@ import { delay } from "rxjs/operators";
 export class ContactService {
   constructor() {}
 
-  getContacts() {
-    return of().pipe(delay(1000));
+  getContactList(payload) {
+    return of(payload).pipe(delay(1000));
   }
 
   getContact(payload) {
