@@ -26,7 +26,7 @@ export class ContactEditComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.route.params.subscribe(params =>
-      this.store.dispatch(new GetContact({ email: params.email }))
+      this.store.dispatch(new GetContact({ id: params.id }))
     );
 
     this.storeSubscription = this.store.select("contacts").subscribe(state => {
@@ -54,6 +54,7 @@ export class ContactEditComponent implements OnInit, OnDestroy {
   onSubmit() {
     const { name, email, phone } = this.contactForm.value;
     const payload: Contacts = {
+      id: this.contact.id,
       name,
       email,
       phone,

@@ -73,11 +73,11 @@ export class ContactEffects {
   DeleteContact: Observable<Action> = this.actions.pipe(
     ofType(TYPES.DELETE_CONTACT),
     map((action: DeleteContact) => action.payload),
-    exhaustMap((payload: { email: string }) => {
+    exhaustMap((payload: { id: string }) => {
       const getList = localStorage.getItem("contacts");
       if (getList) {
         const contacts = [...JSON.parse(getList), payload].filter(item => {
-          return item.email !== payload.email;
+          return item.id !== payload.id;
         });
         localStorage.setItem("contacts", JSON.stringify(contacts));
       } else {
@@ -95,7 +95,7 @@ export class ContactEffects {
   GetContact: Observable<Action> = this.actions.pipe(
     ofType(TYPES.GET_CONTACT),
     map((action: GetContact) => action.payload),
-    exhaustMap((payload: { email: string }) => {
+    exhaustMap((payload: { id: string }) => {
       return this.contactService.getContact(payload).pipe(
         map((response: any) => new GetContactSuccess(response)),
         catchError(error => of(new GetContactError(error)))
@@ -121,16 +121,17 @@ export class ContactEffects {
     map((action: UpdateContact) => action.payload),
     exhaustMap(payload => {
       const getList = localStorage.getItem("contacts");
+      console.log("payload", payload);
+      console.log("getList", JSON.parse(getList));
       if (getList) {
         const contacts = JSON.parse(getList).map(item => {
-          if (item.email === payload.email) {
-            return {
-              ...payload
-            };
+          if (item.id === payload.id) {
+            return payload;
           }
 
           return item;
         });
+        console.log("contacts", contacts);
         localStorage.setItem("contacts", JSON.stringify(contacts));
       } else {
         localStorage.setItem("contacts", JSON.stringify([payload]));

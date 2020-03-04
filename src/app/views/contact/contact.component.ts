@@ -44,13 +44,13 @@ export class ContactComponent implements OnInit {
     modalRef.componentInstance.content = `Are you sure you want to delete ${contact.email}?`;
 
     modalRef.componentInstance.okCallBack.subscribe(() => {
-      this.store.dispatch(new DeleteContact({ email: contact.email }));
+      this.store.dispatch(new DeleteContact({ id: contact.id }));
       modalRef.componentInstance.close();
     });
   }
 
   handleGetEditContact(contact: Contacts) {
-    this.router.navigate([`/edit/${contact.email}`]);
+    this.router.navigate([`/edit/${contact.id}`]);
   }
 
   handleSearchContacts(key: string) {

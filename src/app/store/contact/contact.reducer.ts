@@ -32,7 +32,7 @@ export function contactReducer(
 
     case TYPES.DELETE_CONTACT: {
       const removeContact = state.contacts.filter(contact => {
-        return contact.email !== action.payload.email;
+        return contact.id !== action.payload.id;
       });
 
       return {
@@ -59,7 +59,7 @@ export function contactReducer(
 
     case TYPES.GET_CONTACT: {
       const findContact = state.contacts.find(contact => {
-        return contact.email === action.payload.email;
+        return contact.id === action.payload.id;
       });
 
       return {
@@ -109,7 +109,7 @@ export function contactReducer(
 
     case TYPES.UPDATE_CONTACT: {
       const updateContact = state.contacts.map(contact => {
-        if (contact.email === action.payload.email) {
+        if (contact.id === action.payload.id) {
           return action.payload;
         }
 

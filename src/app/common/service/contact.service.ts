@@ -20,7 +20,7 @@ export class ContactService {
     return of(payload).pipe(delay(1000));
   }
 
-  deleteContact(payload: { email: string }) {
+  deleteContact(payload: { id: string }) {
     return of(payload).pipe(delay(1000));
   }
 }

@@ -13,7 +13,7 @@ export const appRoutes: Routes = [
     data: { title: "Contact List" }
   },
   {
-    path: "edit/:email",
+    path: "edit/:id",
     component: ContactEditComponent,
     data: { title: "Edit Contact" }
   },

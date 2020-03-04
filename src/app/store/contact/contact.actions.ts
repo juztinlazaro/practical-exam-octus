@@ -19,7 +19,7 @@ export class AddContactError implements Action {
 
 export class DeleteContact implements Action {
   readonly type = TYPES.DELETE_CONTACT;
-  constructor(public payload: { email: string }) {}
+  constructor(public payload: { id: string }) {}
 }
 
 export class DeleteContactSuccess implements Action {
@@ -34,7 +34,7 @@ export class DeleteContactError implements Action {
 
 export class GetContact implements Action {
   readonly type = TYPES.GET_CONTACT;
-  constructor(public payload: { email: string }) {}
+  constructor(public payload: { id: string }) {}
 }
 
 export class GetContactSuccess implements Action {

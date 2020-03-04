@@ -1,10 +1,12 @@
 import { Component, OnInit, OnDestroy } from "@angular/core";
-import { AddContact } from "src/app/store/contact/contact.actions";
-import { Contacts } from "src/app/common/model/contacts.model";
 import { Store } from "@ngrx/store";
-import { RootStore } from "src/app/store/rootStore.interface";
 import { Subscription } from "rxjs";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
+import { v4 as uuidv4 } from "uuid";
+
+import { RootStore } from "src/app/store/rootStore.interface";
+import { AddContact } from "src/app/store/contact/contact.actions";
+import { Contacts } from "src/app/common/model/contacts.model";
 
 @Component({
   selector: "app-contact-add",
@@ -39,6 +41,7 @@ export class ContactAddComponent implements OnInit, OnDestroy {
   onSubmit() {
     const { name, email, phone } = this.contactForm.value;
     const payload: Contacts = {
+      id: uuidv4(),
       name,
       email,
       phone,
