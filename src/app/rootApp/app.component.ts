@@ -15,13 +15,8 @@ export class AppComponent {
 
   ngOnInit() {
     const localContacts = localStorage.getItem("contacts");
-
     if (localContacts) {
       this.store.dispatch(new GetContactList(JSON.parse(localContacts)));
     }
-
-    this.store.select("contacts").subscribe(state => {
-      console.log("state", state);
-    });
   }
 }
