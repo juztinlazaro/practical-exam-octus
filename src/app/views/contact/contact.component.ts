@@ -18,7 +18,7 @@ import { Router } from "@angular/router";
 export class ContactComponent implements OnInit {
   modalOptions: NgbModalOptions;
   closeResult: string;
-  contacts: Observable<{ contacts: Contacts[] }>;
+  contacts = [];
   searchKey = null;
 
   constructor(
@@ -33,7 +33,9 @@ export class ContactComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.contacts = this.store.select("contacts");
+    this.store.select("contacts").subscribe(state => {
+      this.contacts = state.contacts;
+    });
   }
 
   handleDeleteEvent(contact: Contacts) {

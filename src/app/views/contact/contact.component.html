@@ -1,14 +1,16 @@
 <div class="home-section">
   <app-search (searchEvent)="handleSearchContacts($event)"></app-search>
 
-  <div>
+  <div *ngIf="contacts.length !== 0">
     <app-contact-item
-      *ngFor="
-        let contact of (contacts | async).contacts | search: searchKey:'name'
-      "
+      *ngFor="let contact of contacts | search: searchKey:'name'"
       [contact]="contact"
       (deleteClickEvent)="handleDeleteEvent(contact)"
       (editClickEvent)="handleGetEditContact(contact)"
     ></app-contact-item>
+  </div>
+
+  <div *ngIf="contacts.length === 0">
+    No Contacts available
   </div>
 </div>
