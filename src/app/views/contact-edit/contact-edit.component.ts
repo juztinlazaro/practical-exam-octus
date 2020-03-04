@@ -23,8 +23,13 @@ export class ContactEditComponent implements OnInit, OnDestroy {
   constructor(private store: Store<RootStore>, private route: ActivatedRoute) {}
 
   ngOnInit() {
+    this.route.params.subscribe(params =>
+      this.store.dispatch(new GetContact({ email: params.email }))
+    );
+
     this.storeSubscription = this.store.select("contacts").subscribe(state => {
       this.isLoading = state.isLoading;
+      this.contact = state.contact;
     });
 
     this.contactForm = new FormGroup({
@@ -38,9 +43,6 @@ export class ContactEditComponent implements OnInit, OnDestroy {
         Validators.pattern(/^[1-9]+[0-9]*$/)
       ])
     });
-
-    this.route.params.subscribe(params => (this.email = params.email));
-    this.store.dispatch(new GetContact({ email: this.email }));
   }
 
   ngOnDestroy() {
@@ -57,7 +59,6 @@ export class ContactEditComponent implements OnInit, OnDestroy {
       image: "http://www.binarysolutions.jo/Image/avatar_male.png"
     };
 
-    console.log(payload);
     // this.store.dispatch(new AddContact(payload));
   }
 }
