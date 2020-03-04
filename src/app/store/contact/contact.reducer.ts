@@ -20,8 +20,7 @@ export function contactReducer(
     case TYPES.ADD_CONTACT_SUCCESS: {
       return {
         ...state,
-        isLoading: false,
-        contacts: [...state.contacts, action.payload]
+        isLoading: false
       };
     }
 
