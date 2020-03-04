@@ -23,6 +23,7 @@ import { EffectsModule } from "@ngrx/effects";
 import { ContactEffects } from "./store/contact/contact.effects";
 import { ContactService } from "./common/service/contact.service";
 import { SpinnerComponent } from "./components/spinner/spinner.component";
+import { SearchPipe } from "./common/pipe/search.pipe";
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { SpinnerComponent } from "./components/spinner/spinner.component";
     ModalComponent,
     SearchBarComponent,
     SpinnerComponent,
-    TestComponent
+    TestComponent,
+    SearchPipe
   ],
   imports: [
     BrowserModule,

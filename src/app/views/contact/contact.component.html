@@ -1,9 +1,11 @@
 <div class="home-section">
-  <app-search></app-search>
+  <app-search (searchEvent)="handleSearchContacts($event)"></app-search>
 
   <div>
     <app-contact-item
-      *ngFor="let contact of (contacts | async).contacts"
+      *ngFor="
+        let contact of (contacts | async).contacts | search: searchKey:'name'
+      "
       [contact]="contact"
       (deleteClickEvent)="handleDeleteEvent(contact)"
       (editClickEvent)="handleGetEditContact(contact)"

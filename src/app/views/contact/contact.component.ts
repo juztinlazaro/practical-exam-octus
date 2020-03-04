@@ -19,6 +19,7 @@ export class ContactComponent implements OnInit {
   modalOptions: NgbModalOptions;
   closeResult: string;
   contacts: Observable<{ contacts: Contacts[] }>;
+  searchKey = null;
 
   constructor(
     private modalService: NgbModal,
@@ -48,5 +49,9 @@ export class ContactComponent implements OnInit {
 
   handleGetEditContact(contact: Contacts) {
     this.router.navigate([`/edit/${contact.email}`]);
+  }
+
+  handleSearchContacts(key: string) {
+    this.searchKey = key;
   }
 }
