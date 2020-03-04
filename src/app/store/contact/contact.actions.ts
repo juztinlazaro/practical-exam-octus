@@ -49,7 +49,7 @@ export class GetContactError implements Action {
 
 export class UpdateContact implements Action {
   readonly type = TYPES.UPDATE_CONTACT;
-  constructor(public payload: { email: string }) {}
+  constructor(public payload) {}
 }
 
 export class UpdateContactSuccess implements Action {

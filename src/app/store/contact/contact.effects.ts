@@ -40,8 +40,8 @@ export class ContactEffects {
     exhaustMap((payload: Contacts) => {
       const getList = localStorage.getItem("contacts");
       if (getList) {
-        const array = [...JSON.parse(getList), payload];
-        localStorage.setItem("contacts", JSON.stringify(array));
+        const contacts = [...JSON.parse(getList), payload];
+        localStorage.setItem("contacts", JSON.stringify(contacts));
       } else {
         localStorage.setItem("contacts", JSON.stringify([payload]));
       }
@@ -74,6 +74,16 @@ export class ContactEffects {
     ofType(TYPES.DELETE_CONTACT),
     map((action: DeleteContact) => action.payload),
     exhaustMap((payload: { email: string }) => {
+      const getList = localStorage.getItem("contacts");
+      if (getList) {
+        const contacts = [...JSON.parse(getList), payload].filter(item => {
+          return item.email !== payload.email;
+        });
+        localStorage.setItem("contacts", JSON.stringify(contacts));
+      } else {
+        localStorage.setItem("contacts", JSON.stringify([payload]));
+      }
+
       return this.contactService.deleteContact(payload).pipe(
         map((response: any) => new DeleteContactSuccess(response)),
         catchError(error => of(new DeleteContactError(error)))
@@ -109,7 +119,23 @@ export class ContactEffects {
   UpdateContact: Observable<Action> = this.actions.pipe(
     ofType(TYPES.UPDATE_CONTACT),
     map((action: UpdateContact) => action.payload),
-    exhaustMap((payload: { email: string }) => {
+    exhaustMap(payload => {
+      const getList = localStorage.getItem("contacts");
+      if (getList) {
+        const contacts = JSON.parse(getList).map(item => {
+          if (item.email === payload.email) {
+            return {
+              ...payload
+            };
+          }
+
+          return item;
+        });
+        localStorage.setItem("contacts", JSON.stringify(contacts));
+      } else {
+        localStorage.setItem("contacts", JSON.stringify([payload]));
+      }
+
       return this.contactService.updateContact(payload).pipe(
         map((response: any) => new UpdateContactSuccess(response)),
         catchError(error => of(new UpdateContactError(error)))
