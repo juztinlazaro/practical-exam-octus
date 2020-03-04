@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from "@angular/core";
 import { Store } from "@ngrx/store";
-import { Subscription } from "rxjs";
+import { Subscription, Observable } from "rxjs";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { v4 as uuidv4 } from "uuid";
 
@@ -16,20 +16,30 @@ export class ContactAddComponent implements OnInit, OnDestroy {
   isLoading = false;
   storeSubscription: Subscription;
   contactForm: FormGroup;
+  contacts = [];
 
   constructor(private store: Store<RootStore>) {}
 
   ngOnInit() {
     this.storeSubscription = this.store.select("contacts").subscribe(state => {
       this.isLoading = state.isLoading;
+      this.contacts = state.contacts;
     });
 
     this.contactForm = new FormGroup({
-      name: new FormControl(null, Validators.required),
-      email: new FormControl(null, [Validators.required, Validators.email]),
+      name: new FormControl(null, [
+        Validators.required,
+        this.forbiddenName.bind(this)
+      ]),
+      email: new FormControl(null, [
+        Validators.required,
+        Validators.email,
+        this.forbiddenEmail.bind(this)
+      ]),
       phone: new FormControl(null, [
         Validators.required,
-        Validators.pattern(/^[1-9]+[0-9]*$/)
+        Validators.pattern(/^[1-9]+[0-9]*$/),
+        this.forbiddenPhone.bind(this)
       ])
     });
   }
@@ -49,5 +59,35 @@ export class ContactAddComponent implements OnInit, OnDestroy {
     };
 
     this.store.dispatch(new AddContact(payload));
+  }
+
+  forbiddenName(control: FormControl) {
+    const validate = this.contacts.find(item => item.name === control.value);
+
+    if (validate) {
+      return { nameValid: true };
+    }
+
+    return null;
+  }
+
+  forbiddenEmail(control: FormControl) {
+    const validate = this.contacts.find(item => item.email === control.value);
+
+    if (validate) {
+      return { emailValid: true };
+    }
+
+    return null;
+  }
+
+  forbiddenPhone(control: FormControl) {
+    const validate = this.contacts.find(item => item.phone === control.value);
+
+    if (validate) {
+      return { phoneValid: true };
+    }
+
+    return null;
   }
 }
