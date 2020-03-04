@@ -7,23 +7,20 @@ export function contactReducer(
   action: ACTIONS.ContactActions
 ) {
   console.log(action);
+  console.log("type", action);
   switch (action.type) {
     case TYPES.ADD_CONTACT: {
       return {
         ...state,
+        isLoading: true,
         contacts: [...state.contacts, action.payload]
-      };
-    }
-
-    case TYPES.ADD_CONTACT: {
-      return {
-        ...state
       };
     }
 
     case TYPES.ADD_CONTACT_SUCCESS: {
       return {
         ...state,
+        isLoading: false,
         contacts: [...state.contacts, action.payload]
       };
     }
@@ -31,6 +28,7 @@ export function contactReducer(
     case TYPES.ADD_CONTACT_ERROR: {
       return {
         ...state,
+        isLoading: false,
         error: action.payload
       };
     }

@@ -22,6 +22,7 @@ import { FormsModule } from "@angular/forms";
 import { EffectsModule } from "@ngrx/effects";
 import { ContactEffects } from "./store/contact/contact.effects";
 import { ContactService } from "./common/service/contact.service";
+import { SpinnerComponent } from "./components/spinner/spinner.component";
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { ContactService } from "./common/service/contact.service";
     HeaderComponent,
     ModalComponent,
     SearchBarComponent,
+    SpinnerComponent,
     TestComponent
   ],
   imports: [

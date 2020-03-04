@@ -16,7 +16,7 @@ import { Observable } from "rxjs";
 export class ContactComponent implements OnInit {
   modalOptions: NgbModalOptions;
   closeResult: string;
-  contacts: Observable<Contacts[]>;
+  contacts: Observable<{ contacts: Contacts[] }>;
 
   constructor(private modalService: NgbModal, private store: Store<RootStore>) {
     this.modalOptions = {
