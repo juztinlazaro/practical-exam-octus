@@ -6,6 +6,7 @@
       *ngFor="let contact of (contacts | async).contacts"
       [contact]="contact"
       (deleteClickEvent)="handleDeleteEvent(contact)"
+      (editClickEvent)="handleGetEditContact(contact)"
     ></app-contact-item>
   </div>
 </div>

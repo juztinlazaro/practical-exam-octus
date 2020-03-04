@@ -8,9 +8,14 @@ import { Contacts } from "src/app/common/model/contacts.model";
 })
 export class ContactItemComponent {
   @Input() contact: Contacts;
-  @Output() deleteClickEvent: EventEmitter<{ id: number }> = new EventEmitter();
+  @Output() deleteClickEvent = new EventEmitter();
+  @Output() editClickEvent = new EventEmitter();
 
   public handleDeleteEvent() {
-    this.deleteClickEvent.emit({ id: 12 });
+    this.deleteClickEvent.emit();
+  }
+
+  public handleGetEditContact() {
+    this.editClickEvent.emit();
   }
 }

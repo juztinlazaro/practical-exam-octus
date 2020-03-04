@@ -3,6 +3,7 @@ import { Contacts } from "src/app/common/model/contacts.model";
 export const initialState = {
   isLoading: false,
   error: null,
+  contact: {},
   contacts: [
     new Contacts(
       "juztinlazaro@gmail.com",

@@ -32,10 +32,28 @@ export class DeleteContactError implements Action {
   constructor(public payload: Error) {}
 }
 
+export class GetContact implements Action {
+  readonly type = TYPES.GET_CONTACT;
+  constructor(public payload: { email: string }) {}
+}
+
+export class GetContactSuccess implements Action {
+  readonly type = TYPES.GET_CONTACT_SUCCESS;
+  constructor(public payload) {}
+}
+
+export class GetContactError implements Action {
+  readonly type = TYPES.GET_CONTACT_ERROR;
+  constructor(public payload) {}
+}
+
 export type ContactActions =
   | AddContact
   | AddContactSuccess
   | AddContactError
   | DeleteContact
   | DeleteContactSuccess
-  | DeleteContactError;
+  | DeleteContactError
+  | GetContact
+  | GetContactError
+  | GetContactSuccess;

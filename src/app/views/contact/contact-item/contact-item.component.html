@@ -19,10 +19,14 @@
             Delete
           </button>
 
-          <a routerLink="/edit" type="button" class="btn btn-info">
+          <button
+            (click)="handleGetEditContact()"
+            type="button"
+            class="btn btn-info"
+          >
             <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
             Edit
-          </a>
+          </button>
         </div>
       </div>
 
