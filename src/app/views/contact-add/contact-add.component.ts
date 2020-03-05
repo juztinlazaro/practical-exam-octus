@@ -27,10 +27,7 @@ export class ContactAddComponent implements OnInit, OnDestroy {
     });
 
     this.contactForm = new FormGroup({
-      name: new FormControl(null, [
-        Validators.required,
-        this.duplicatedName.bind(this)
-      ]),
+      name: new FormControl(null, [Validators.required]),
       email: new FormControl(null, [
         Validators.required,
         Validators.email,
@@ -61,23 +58,11 @@ export class ContactAddComponent implements OnInit, OnDestroy {
     this.store.dispatch(new AddContact(payload));
   }
 
-  duplicatedName(control: FormControl) {
-    const countRecord = this.contacts.filter(
-      item => item.name === control.value
-    ).length;
-
-    if (countRecord > 1) {
-      return { nameInvalid: true };
-    }
-
-    return null;
-  }
-
   duplicatedEmail(control: FormControl) {
     const validate = this.contacts.find(item => item.email === control.value);
 
     if (validate) {
-      return { emailValid: true };
+      return { emailInvalid: true };
     }
 
     return null;
@@ -87,7 +72,7 @@ export class ContactAddComponent implements OnInit, OnDestroy {
     const validate = this.contacts.find(item => item.phone === control.value);
 
     if (validate) {
-      return { phoneValid: true };
+      return { phoneInvalid: true };
     }
 
     return null;
