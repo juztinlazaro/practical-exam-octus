@@ -2,7 +2,7 @@
 
 #### Folder structure
 
-LIVE SITE: https://5e5f438aeaaa7a54486a0f5f--jovial-kare-5b8a35.netlify.com/
+LIVE SITE: https://jovial-kare-5b8a35.netlify.com/
 
 1. rootApp - compose of root application and router
 2. views - Pages / routes components
