@@ -66,7 +66,7 @@ export class ContactAddComponent implements OnInit, OnDestroy {
       item => item.name === control.value
     ).length;
 
-    if (countRecord > 2) {
+    if (countRecord > 1) {
       return { nameInvalid: true };
     }
 
