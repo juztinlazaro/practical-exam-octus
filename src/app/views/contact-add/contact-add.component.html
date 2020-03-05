@@ -13,14 +13,31 @@
           type="text"
           class="form-control"
         />
-        <p
+        <span
           *ngIf="
             !contactForm.get('name').valid && contactForm.get('name').touched
           "
-          class="error-message"
         >
-          Name is required!
-        </p>
+          <p
+            *ngIf="
+              contactForm.get('name').errors['required'] &&
+              contactForm.get('name').touched
+            "
+            class="error-message"
+          >
+            Name is required!
+          </p>
+
+          <p
+            class="error-message"
+            *ngIf="
+              contactForm.get('name').errors['nameInvalid'] &&
+              contactForm.get('name').touched
+            "
+          >
+            Another contact with the same email or phone number exists!
+          </p>
+        </span>
       </div>
 
       <div class="form-group">

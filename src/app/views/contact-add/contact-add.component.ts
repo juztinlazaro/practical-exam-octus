@@ -62,10 +62,12 @@ export class ContactAddComponent implements OnInit, OnDestroy {
   }
 
   duplicatedName(control: FormControl) {
-    const validate = this.contacts.find(item => item.name === control.value);
+    const countRecord = this.contacts.filter(
+      item => item.name === control.value
+    ).length;
 
-    if (validate) {
-      return { nameValid: true };
+    if (countRecord > 2) {
+      return { nameInvalid: true };
     }
 
     return null;
